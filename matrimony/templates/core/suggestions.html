@@ -1,0 +1,29 @@
+{% extends 'core/base.html' %}
+{% block content %}
+  <h2>Suggested Matches</h2>
+
+  {% if error %}
+    <p>{{ error }}</p>
+  {% elif suggested_profiles %}
+    <ul>
+      {% for entry in suggested_profiles %}
+        {% with profile=entry.profile %}
+        <li>
+          <strong>{{ profile.user.username }}</strong><br>
+          Age: {{ profile.age }}<br>
+          Gender: {{ profile.gender }}<br>
+          Religion: {{ profile.religion }}<br>
+          Location: {{ profile.location }}<br>
+          Profession: {{ profile.profession }}<br>
+          <strong>{{ entry.match_score }} preferences matched:</strong>
+          {{ entry.matched_fields|join:", " }}
+          <a href="{% url 'profile_detail' profile.user_id %}">View Profile</a>
+        </li>
+        <hr>
+        {% endwith %}
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No suggestions found based on your preferences.</p>
+  {% endif %}
+{% endblock %}

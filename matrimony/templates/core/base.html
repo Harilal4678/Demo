@@ -4,6 +4,7 @@
     <title>Matrimonial Site</title>
 </head>
 <body>
+    <p><a href="{% url 'home' %}">Home</a></p>
     {% if user.is_authenticated %}
         <p>Welcome, {{ user.username }} | <a href="{% url 'logout' %}">Logout</a></p>
     {% else %}
@@ -11,5 +12,6 @@
     {% endif %}
     <hr>
     {% block content %}{% endblock %}
+    
 </body>
 </html>

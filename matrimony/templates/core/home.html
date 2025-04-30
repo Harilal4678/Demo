@@ -2,4 +2,13 @@
 {% block content %}
 <h2>Home Page</h2>
 <p>This is the home page.</p>
+<ul>
+    <li><a href="{% url 'profile_setup' %}">Set Up Your Profile</a></li>
+    <li><a href="{% url 'preference_setup' %}">Set Your Preferences</a></li>
+</ul>
+<a href="{% url 'search_profiles' %}">Search Profiles</a>
+<a href="{% url 'suggestions' %}">Suggestions</a>
+
+
+
 {% endblock %}

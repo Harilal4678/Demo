@@ -1,0 +1,36 @@
+<!-- templates/search_results.html -->
+{% extends 'core/base.html' %}
+{% block content %}
+<head>
+    <title>Search Profiles</title>
+</head>
+<body>
+    <h2>Search Profiles</h2>
+
+    <form method="get">
+        {{ form.as_p }}
+        <button type="submit">Search</button>
+    </form>
+
+    <hr>
+
+    <h3>Results:</h3>
+    <ul>
+    {% for profile in profiles %}
+        <li>
+            <strong>{{ profile.user.username }}</strong><br>
+            Age: {{ profile.age }}<br>
+            Gender: {{ profile.gender }}<br>
+            Religion: {{ profile.religion }}<br>
+            Location: {{ profile.location }}<br>
+            Profession: {{ profile.profession }}
+            <a href="{% url 'profile_detail' profile.user_id %}">View Profile</a>
+        </li>
+        <br>
+    {% empty %}
+        <p>No matching profiles found.</p>
+    {% endfor %}
+    </ul>
+</body>
+{% endblock %}
+

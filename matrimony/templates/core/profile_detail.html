@@ -1,0 +1,31 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<div class="profile-container" style="max-width: 600px; margin: auto; padding: 25px; background: white; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+    <h1 class="text-center">{{ user_profile.user.username }}'s Profile</h1>
+
+    <p><strong>Age:</strong> {{ user_profile.age }}</p>
+    <p><strong>Gender:</strong> {{ user_profile.gender }}</p>
+    <p><strong>Religion:</strong> {{ user_profile.religion }}</p>
+    <p><strong>Location:</strong> {{ user_profile.location }}</p>
+    <p><strong>Profession:</strong> {{ user_profile.profession }}</p>
+    <p><strong>Bio:</strong> {{ user_profile.bio }}</p>
+
+    {% if user_profile.partnerpreference %}
+        <h3>Partner Preferences</h3>
+        <p><strong>Preferred Religion:</strong> {{ user_profile.partnerpreference.preferred_religion|default:"Not specified" }}</p>
+        <p><strong>Preferred Location:</strong> {{ user_profile.partnerpreference.preferred_location|default:"Not specified" }}</p>
+        <p><strong>Preferred Profession:</strong> {{ user_profile.partnerpreference.preferred_profession|default:"Not specified" }}</p>
+        <p><strong>Preferred Age Range:</strong>
+            {{ user_profile.partnerpreference.min_age|default:"?" }} - {{ user_profile.partnerpreference.max_age|default:"?" }}
+        </p>
+    {% else %}
+        <p>No partner preferences set.</p>
+    {% endif %}
+
+    <div style="margin-top: 20px;">
+        <a href="{% url 'suggestions' %}" class="btn btn-primary">Back to Suggestions</a>
+        <a href="{% url 'search_profiles' %}" class="btn btn-secondary">Back to Filter</a>
+    </div>
+</div>
+{% endblock %}
